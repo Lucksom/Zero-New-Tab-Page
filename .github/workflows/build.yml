@@ -13,22 +13,19 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
       - name: Create ZIP File
         run: |
           zip -r Zero-New-Tab-Page.zip . -x "*.git*" -x ".github/*" -x "screenshots/*" -x "README.md"
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'
-
       - name: Build CRX File
         env:
           PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
-          # Forces the server to accept older OpenSSL crypto standards
-          NODE_OPTIONS: "--openssl-legacy-provider"
         run: |
-          # Writes the raw secret text safely to the key.pem file
           cat << 'EOF' > key.pem
           ${{ secrets.PRIVATE_KEY }}
           EOF
