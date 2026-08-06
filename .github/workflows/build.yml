@@ -1,8 +1,8 @@
-name: Build Extension
+name: Build and Release Extension
 
 on:
-  push:
-    branches: [ "main" ]
+  release:
+    types: [published]
   workflow_dispatch:
 
 jobs:
@@ -30,10 +30,9 @@ jobs:
           npx crx3 --key key.pem --crx Zero-New-Tab-Page.crx Zero-New-Tab-Page.zip
           rm key.pem
 
-      - name: Upload Finished Files
-        uses: actions/upload-artifact@v4
+      - name: Upload to Release
+        uses: softprops/action-gh-release@v2
         with:
-          name: Zero-Extension-Builds
-          path: |
+          files: |
             Zero-New-Tab-Page.zip
             Zero-New-Tab-Page.crx
