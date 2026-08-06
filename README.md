@@ -4,11 +4,12 @@ A sleek, minimal, and highly functional custom New Tab page extension for Google
 
 ## 📸 Screenshots
 
-*(Here is a look at the interface in action!)*
-
-<!-- Note: Update the filenames (like screenshot1.png) below to match the exact names of the images inside your /screenshots/ folder! -->
 <div align="center">
-  <img src="screenshots/screenshot1.png" alt="Zero New Tab Page Interface" width="700"/>
+  <img src="screenshots/1.png" alt="Zero New Tab Page - Main View" width="700"/>
+  <br><br>
+  <img src="screenshots/2.png" alt="Zero New Tab Page - Floating Bar & Search" width="700"/>
+  <br><br>
+  <img src="screenshots/3.png" alt="Zero New Tab Page - Customization" width="700"/>
 </div>
 
 ## ✨ Features
