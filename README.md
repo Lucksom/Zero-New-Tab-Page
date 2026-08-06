@@ -1,5 +1,5 @@
 # Zero-New-Tab-Page
-# Zero-Home-Tab
+# Zero-New-Tab-Page
 
 A highly customizable, minimalist Material Design New Tab extension. Features include a sleek Glassmorphism UI, a unique Dual Search Engine mode, live weather with canvas animations, and dynamic shortcuts.
 
@@ -17,6 +17,6 @@ Zero-Home-Tab can be installed manually in just a few seconds:
 3. Open your Chromium-based browser and navigate to `chrome://extensions/` (or `edge://extensions/`).
 4. Toggle on **Developer mode** in the top right corner.
 5. Click the **Load unpacked** button in the top left.
-6. Select your extracted `Zero-Home-Tab` folder.
+6. Select your extracted `Zero-New-Tab-Page` folder.
 7. Open a new tab and enjoy a cleaner home screen!
 
