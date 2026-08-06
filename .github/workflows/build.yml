@@ -15,8 +15,6 @@ jobs:
 
       - name: Create ZIP File
         run: |
-          # Zips everything in the root directory (.)
-          # Excludes Github files, documentation, and store screenshots to keep the extension light
           zip -r Zero-New-Tab-Page.zip . -x "*.git*" -x ".github/*" -x "screenshots/*" -x "README.md"
 
       - name: Setup Node.js
@@ -26,16 +24,10 @@ jobs:
 
       - name: Build CRX File
         env:
-          # Pulls your hidden PEM key from your GitHub Secrets
           PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
         run: |
-          # Creates the key file on the server temporarily
           echo "$PRIVATE_KEY" > key.pem
-          
-          # Uses crx3 to package the ZIP into a signed CRX
           npx crx3 --key key.pem --crx Zero-New-Tab-Page.crx Zero-New-Tab-Page.zip
-          
-          # Instantly deletes the key for security
           rm key.pem
 
       - name: Upload Finished Files
@@ -45,4 +37,3 @@ jobs:
           path: |
             Zero-New-Tab-Page.zip
             Zero-New-Tab-Page.crx
-
