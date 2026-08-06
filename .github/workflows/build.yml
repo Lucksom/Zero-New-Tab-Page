@@ -20,21 +20,18 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '18'
 
       - name: Build CRX File
         env:
           PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
         run: |
-          echo "$PRIVATE_KEY" > key.pem
+          cat << 'EOF' > key.pem
+          ${{ secrets.PRIVATE_KEY }}
+          EOF
           
-          # Unzip the clean files into a temporary folder quietly (-q)
           unzip -q Zero-New-Tab-Page.zip -d temp_build
-          
-          # Tell crx3 to build from the folder, NOT the zip file
           npx crx3 --key key.pem --crx Zero-New-Tab-Page.crx temp_build
-          
-          # Clean up the key and temporary folder
           rm -rf key.pem temp_build
 
       - name: Upload to Release
