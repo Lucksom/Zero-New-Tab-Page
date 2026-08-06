@@ -31,9 +31,21 @@ jobs:
           EOF
           
           unzip -q Zero-New-Tab-Page.zip -d temp_build
+          
+          # List extracted files to verify icon.png exists in root
+          ls -la temp_build
+          
+          # Run crx3 with verbose output
           npx crx3 --key key.pem --crx Zero-New-Tab-Page.crx temp_build
+          
           rm -rf key.pem temp_build
 
+      - name: Upload to Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            Zero-New-Tab-Page.zip
+            Zero-New-Tab-Page.crx
       - name: Upload to Release
         uses: softprops/action-gh-release@v2
         with:
