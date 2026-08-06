@@ -7,45 +7,37 @@ on:
 
 jobs:
   build:
-    runs-on: runs-on: ubuntu-22.04
+    # Changed from ubuntu-latest to ubuntu-22.04 to avoid server runner glitches
+    runs-on: ubuntu-22.04
 
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
       - name: Create ZIP File
         run: |
           zip -r Zero-New-Tab-Page.zip . -x "*.git*" -x ".github/*" -x "screenshots/*" -x "README.md"
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
       - name: Build CRX File
         env:
           PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+          # Forces the server to accept older OpenSSL crypto standards
+          NODE_OPTIONS: "--openssl-legacy-provider"
         run: |
+          # Writes the raw secret text safely to the key.pem file
           cat << 'EOF' > key.pem
           ${{ secrets.PRIVATE_KEY }}
           EOF
           
           unzip -q Zero-New-Tab-Page.zip -d temp_build
-          
-          # List extracted files to verify icon.png exists in root
-          ls -la temp_build
-          
-          # Run crx3 with verbose output
           npx crx3 --key key.pem --crx Zero-New-Tab-Page.crx temp_build
-          
           rm -rf key.pem temp_build
 
-      - name: Upload to Release
-        uses: softprops/action-gh-release@v2
-        with:
-          files: |
-            Zero-New-Tab-Page.zip
-            Zero-New-Tab-Page.crx
       - name: Upload to Release
         uses: softprops/action-gh-release@v2
         with:
