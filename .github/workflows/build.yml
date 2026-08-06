@@ -13,9 +13,10 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Create ZIP File
+      - name: Create ZIP and XPI Files
         run: |
           zip -r Zero-New-Tab-Page.zip . -x "*.git*" -x ".github/*" -x "screenshots/*" -x "README.md"
+          cp Zero-New-Tab-Page.zip Zero-New-Tab-Page.xpi
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -41,3 +42,4 @@ jobs:
           files: |
             Zero-New-Tab-Page.zip
             Zero-New-Tab-Page.crx
+            Zero-New-Tab-Page.xpi
