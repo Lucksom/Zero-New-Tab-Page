@@ -5,6 +5,10 @@ on:
     types: [published]
   workflow_dispatch:
 
+# This grants the workflow permission to upload the files to your release!
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-22.04
