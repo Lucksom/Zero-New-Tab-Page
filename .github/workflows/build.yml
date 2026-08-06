@@ -1,1 +1,48 @@
+name: Build Extension
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Create ZIP File
+        run: |
+          # Zips everything in the root directory (.)
+          # Excludes Github files, documentation, and store screenshots to keep the extension light
+          zip -r Zero-New-Tab-Page.zip . -x "*.git*" -x ".github/*" -x "screenshots/*" -x "README.md"
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Build CRX File
+        env:
+          # Pulls your hidden PEM key from your GitHub Secrets
+          PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+        run: |
+          # Creates the key file on the server temporarily
+          echo "$PRIVATE_KEY" > key.pem
+          
+          # Uses crx3 to package the ZIP into a signed CRX
+          npx crx3 --key key.pem --crx Zero-New-Tab-Page.crx Zero-New-Tab-Page.zip
+          
+          # Instantly deletes the key for security
+          rm key.pem
+
+      - name: Upload Finished Files
+        uses: actions/upload-artifact@v4
+        with:
+          name: Zero-Extension-Builds
+          path: |
+            Zero-New-Tab-Page.zip
+            Zero-New-Tab-Page.crx
 
