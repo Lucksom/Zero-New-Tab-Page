@@ -25,9 +25,13 @@ jobs:
       - name: Build CRX File
         env:
           PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+          # Forces the server to accept older OpenSSL crypto standards
+          NODE_OPTIONS: "--openssl-legacy-provider"
         run: |
-          # Decodes the safe Base64 string back into a perfectly formatted PEM file
-          echo "$PRIVATE_KEY" | base64 --decode > key.pem
+          # Writes the raw secret text safely to the key.pem file
+          cat << 'EOF' > key.pem
+          ${{ secrets.PRIVATE_KEY }}
+          EOF
           
           unzip -q Zero-New-Tab-Page.zip -d temp_build
           npx crx3 --key key.pem --crx Zero-New-Tab-Page.crx temp_build
