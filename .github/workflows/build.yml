@@ -7,7 +7,6 @@ on:
 
 jobs:
   build:
-    # Changed from ubuntu-latest to ubuntu-22.04 to avoid server runner glitches
     runs-on: ubuntu-22.04
 
     steps:
@@ -26,10 +25,8 @@ jobs:
       - name: Build CRX File
         env:
           PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
-          # Forces the server to accept older OpenSSL crypto standards
           NODE_OPTIONS: "--openssl-legacy-provider"
         run: |
-          # Writes the raw secret text safely to the key.pem file
           cat << 'EOF' > key.pem
           ${{ secrets.PRIVATE_KEY }}
           EOF
