@@ -31,14 +31,6 @@ Because this extension is currently in active development and not yet on the Chr
 2. Download the latest **`Zero-New-Tab-Page.zip`** file from the assets.
 3. Extract (unzip) the file into a dedicated folder on your computer.
 
-### Step 2: Load into Chrome
-1. Open Google Chrome and type `chrome://extensions/` into the URL address bar.
-2. Look in the top right corner and turn **ON** the **Developer mode** toggle.
-3. Click the **Load unpacked** button that appears in the top left.
-4. Select the folder you extracted in Step 1.
-
-Boom! Open a new tab to see your new interface in action.
-
 ---
 
 ## 👏 Credits & APIs
