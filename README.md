@@ -1,5 +1,6 @@
 # Zero New Tab Page
-https://img.shields.io/github/downloads/Lucksom/Zero-New-Tab-Page/total.svg?style=flat-square&color=blue
+
+[![Downloads](https://img.shields.io/github/downloads/Lucksom/Zero-New-Tab-Page/total.svg?style=flat-square&color=blue)](https://github.com/Lucksom/Zero-New-Tab-Page/releases)
 
 A sleek, minimal, and highly functional custom New Tab page extension for Google Chrome. Designed to eliminate clutter while keeping essential web tools, weather, and daily insights right at your fingertips.
 
