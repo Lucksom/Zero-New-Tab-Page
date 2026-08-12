@@ -6,12 +6,12 @@ A sleek, minimal, and highly functional custom New Tab page extension for Google
 
 ## 📸 Screenshots
 
+## 📸 Screenshots
+
 <div align="center">
-  <img src="screenshots/1.png" alt="Zero New Tab Page - Main View" width="700"/>
-  <br><br>
-  <img src="screenshots/2.png" alt="Zero New Tab Page - Floating Bar & Search" width="700"/>
-  <br><br>
-  <img src="screenshots/3.jpg" alt="Zero New Tab Page - Customization" width="700"/>
+  <img src="screenshots/1.png" alt="Zero New Tab Page - Main View" width="32%"/>
+  <img src="screenshots/2.png" alt="Zero New Tab Page - Floating Bar & Search" width="32%"/>
+  <img src="screenshots/3.jpg" alt="Zero New Tab Page - Customization" width="32%"/>
 </div>
 
 ## ✨ Features
