@@ -6,8 +6,6 @@ A sleek, minimal, and highly functional custom New Tab page extension for Google
 
 ## 📸 Screenshots
 
-## 📸 Screenshots
-
 <div align="center">
   <img src="screenshots/1.png" alt="Zero New Tab Page - Main View" width="32%"/>
   <img src="screenshots/2.png" alt="Zero New Tab Page - Floating Bar & Search" width="32%"/>
@@ -16,7 +14,7 @@ A sleek, minimal, and highly functional custom New Tab page extension for Google
 
 ## ✨ Features
 
-### 🔍 Search & AI Features
+### 🔍 Search Features
 *   **Dual Search Engine & Quick Switch:** Easily swap between different search engines on the fly. Enable two active search engines side-by-side in the search bar for lightning-fast switching without opening the menu.
 *   **Consistent Search Layout:** The search logo size is engineered to remain perfectly constant and unified, completely independent of which search provider you actively switch to.
 *   **Quick Engine Switching:** Tap the search engine logo inside the search bar to instantly open a grid and switch between 11 built-in search engines (Google, DuckDuckGo, Yandex, Bing, Yahoo, Brave, Startpage, Perplexity, Ecosia, Ocean, Baidu).
