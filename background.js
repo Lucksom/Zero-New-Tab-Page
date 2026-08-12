@@ -1,4 +1,12 @@
-
+chrome.runtime.onStartup.addListener(() => {
+  chrome.tabs.query({}, (tabs) => {
+    tabs.forEach(tab => {
+      if (tab.url === "chrome-native://newtab/" || tab.url === "chrome://newtab/") {
+        chrome.tabs.update(tab.id, { url: "chrome://newtab/" });
+      }
+    });
+  });
+});
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (!request || !request.ask) return true;
 
