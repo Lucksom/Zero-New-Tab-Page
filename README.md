@@ -61,10 +61,6 @@ A sleek, minimal, and highly functional custom New Tab page extension for Google
 *   **Full Backup & Restore:** Generate a downloadable `.json` file that perfectly saves your `localStorage` (colors, sliders, toggles) and your `chrome.storage.local` (shortcuts, custom engines). Upload the file later to instantly restore your exact setup.
 *   **Reset Controls:** Dedicated buttons to safely reset just your shortcuts, just your background, or just your layout sliders back to factory defaults.
 
-## 🚀 Installation Guide
-
-Because this extension is currently in active development and not yet on the Chrome Web Store, you can easily install it on your local browser using Developer Mode.
- 
 ---
 
 ## 👏 Credits & APIs
