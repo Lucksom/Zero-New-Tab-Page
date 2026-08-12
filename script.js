@@ -1707,6 +1707,90 @@ document.getElementById('resetShapeBtn')?.addEventListener('click', e => {
     resetModal?.classList.remove('visible');
 });
 
+const backupBtn = document.getElementById('backup-btn');
+const restoreBtn = document.getElementById('restore-btn');
+const restoreFile = document.getElementById('restore-file');
+
+if (backupBtn) {
+    backupBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        
+        const backupData = {
+            localStorage: {},
+            chromeStorage: {}
+        };
+        
+        for (let i = 0; i < localStorage.length; i++) {
+            const key = localStorage.key(i);
+            backupData.localStorage[key] = localStorage.getItem(key);
+        }
+
+        if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.local) {
+            chrome.storage.local.get(null, (items) => {
+                backupData.chromeStorage = items;
+                downloadBackup(backupData);
+            });
+        } else {
+            downloadBackup(backupData);
+        }
+    });
+}
+
+function downloadBackup(data) {
+    const dataString = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(data));
+    const downloadAnchorNode = document.createElement('a');
+    downloadAnchorNode.setAttribute("href", dataString);
+    const date = new Date().toISOString().slice(0, 10);
+    downloadAnchorNode.setAttribute("download", `Zero_New_Tab_Backup_${date}.json`);
+    document.body.appendChild(downloadAnchorNode);
+    downloadAnchorNode.click();
+    downloadAnchorNode.remove();
+}
+
+if (restoreBtn && restoreFile) {
+    restoreBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        restoreFile.click();
+    });
+
+    restoreFile.addEventListener('change', (event) => {
+        const file = event.target.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            try {
+                const backupData = JSON.parse(e.target.result);
+                
+                if (backupData.localStorage) {
+                    localStorage.clear();
+                    for (const [key, value] of Object.entries(backupData.localStorage)) {
+                        localStorage.setItem(key, value);
+                    }
+                }
+
+                if (backupData.chromeStorage && typeof chrome !== 'undefined' && chrome.storage && chrome.storage.local) {
+                    chrome.storage.local.clear(() => {
+                        chrome.storage.local.set(backupData.chromeStorage, () => {
+                            finishRestore();
+                        });
+                    });
+                } else {
+                    finishRestore();
+                }
+            } catch (err) {
+                alert("Error: Invalid backup file. Please select a valid Zero New Tab backup.");
+            }
+        };
+        reader.readAsText(file);
+    });
+}
+
+function finishRestore() {
+    alert("Backup restored successfully! The page will now reload.");
+    window.location.reload();
+}
+
 document.addEventListener('click', e => {
     if (settingsDropdown && !settingsDropdown.contains(e.target) && e.target !== topSettingsBtn && !topSettingsBtn?.contains(e.target)) {
         settingsDropdown.classList.remove('visible');
